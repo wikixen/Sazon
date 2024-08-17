@@ -1,7 +1,14 @@
-package main
+package middleware
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
 
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+	"github.com/wikixen/sazonapp/helpers"
+)
+
+// Cors sets Headers to allow CORs to work
 func Cors() gin.HandlerFunc{
 	return func(ctx *gin.Context) {
 		ctx.Writer.Header().Set("Access-Control-Allow-Origin", "*")
@@ -15,4 +22,15 @@ func Cors() gin.HandlerFunc{
 		}
 		ctx.Next()
 	}
+}
+
+// EnvSetup loads the godotenv package
+func EnvSetup() {
+	err := godotenv.Load(".env")
+	errJSON := helpers.ErrorStruct{
+		Status: http.StatusBadRequest,
+		Err: err,
+		Ctx: &gin.Context{},
+	}
+	errJSON.ErrorHandler()
 }

@@ -5,28 +5,21 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
+	"github.com/wikixen/sazonapp/config"
+	"github.com/wikixen/sazonapp/middleware"
 )
 
-// envSetup loads the godotenv package and returns the necessary var(PORT in this case)
-func envSetup() string {
-	err := godotenv.Load(".env")
-	helper.ErrorHandler(err, "Error loading enviroment variables", &gin.Context{})
-	
-	PORT := os.Getenv("PORT")
-	if PORT == "" {
-		PORT = ":5000"
+func main() {
+	middleware.EnvSetup()
+	SERVER_PORT := os.Getenv("SERVER_PORT")
+	if SERVER_PORT == "" {
+		SERVER_PORT = ":5000"
 	}
 
-	return PORT
-}
-
-func main() {
-	PORT := envSetup()
-
 	app := gin.Default()
+	config.DBConnect()
 	app.SetTrustedProxies(nil)
-	app.Use(Cors())
+	app.Use(middleware.Cors())
 
-	log.Fatal(app.Run(PORT))
+	log.Fatal(app.Run(SERVER_PORT))
 }
