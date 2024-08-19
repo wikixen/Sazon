@@ -7,25 +7,29 @@ import (
 )
 
 type User struct {
-	userID    uint           `gorm:"type:uint;primaryKey"`
-	Email     string         `gorm: "type:varchar(255)"`
-	Password  string         `gorm: "type:varchar(255)"`
-	CreatedAt time.Time      `json: createdAt`
-	UpdatedAt time.Time      `json: updatedAt`
-	DeletedAt gorm.DeletedAt `gorm:"index"`
+	gorm.Model
+	Email       string         `json:"email" gorm:"unique"`
+	Username    string         `json:"username" gorm:"unique"`
+	Password    string         `json:"password" gorm:"size:"`
+	Recipe      []Recipe       `gorm:"foreignKey:RecipeID"`
+	Ingredients []Ingredients  `gorm:"foreignKey:IngredientID"`
+	
 }
 
 type Recipe struct {
-	recipeID            uint     `gorm:"type:uint;primaryKey"`
-	recipeName          string   `gorm: "type:varchar(255)"`
-	recipeIngredientsID []int    `gorm:"type:int"`
-	recipeIngredients   []string `gorm: "type:varchar(255)"`
-	userID              uint     `gorm:"type:uint"`
+	RecipeID    uint           `json:"recipe_id" gorm:"unique; primaryKey"`
+	RecipeName  string         `json:"recipe_name" gorm:"unique"`
+	Ingredients Ingredients    `json:"recipe_ingredients_id" gorm:"foreignKey:IngredientID"`
+	DeletedAt   gorm.DeletedAt `gorm:"index"`
+	CreatedAt   time.Time
+	UpdatedAt   time.Time
 }
 
 type Ingredients struct {
-	indgredientID       uint   `gorm:"type:uint;primaryKey"`
-	indgredientName     string `gorm: "type:varchar(255)"`
-	indgredientQuantity int    `gorm:"type:int"`
-	userID              uint   `gorm:"type:uint"`
+	IngredientID       uint           `json:"indgredient_id" gorm:"unique; primaryKey"`
+	IngredientName     string         `json:"indgredient_name" gorm:"unique"`
+	IngredientQuantity uint           `json:"indgredient_quantity"`
+	DeletedAt          gorm.DeletedAt `gorm:"index"`
+	CreatedAt          time.Time
+	UpdatedAt          time.Time
 }
