@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	middleware.EnvSetup(&gin.Context{})
+	config.EnvSetup(&gin.Context{})
 	SERVER_PORT := os.Getenv("SERVER_PORT")
 	if SERVER_PORT == "" {
 		SERVER_PORT = ":5000"
