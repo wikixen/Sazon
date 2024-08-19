@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/wikixen/sazonapp/helpers"
 	"github.com/wikixen/sazonapp/middleware"
 	"github.com/wikixen/sazonapp/models"
 	"gorm.io/driver/postgres"
@@ -15,8 +14,8 @@ import (
 
 var DB *gorm.DB
 
-func DBConnect() {
-	middleware.EnvSetup()
+func DBConnect(ctx *gin.Context) {
+	middleware.EnvSetup(&gin.Context{})
 
 	HOST := os.Getenv("HOST")
 	DB_PORT := os.Getenv("DB_PORT")
@@ -24,7 +23,7 @@ func DBConnect() {
 	PASSWORD := os.Getenv("PASSWORD")
 
 	dsn := fmt.Sprintf(
-		"postgres://%s:%s@%s:%s/Users", 
+		"postgres://%s:%s@%s:%s/SazonApp", 
 		USER, 
 		PASSWORD, 
 		HOST, 
@@ -32,13 +31,12 @@ func DBConnect() {
 	)
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	errJSON := helpers.ErrorStruct{
-		Status: http.StatusBadRequest,
-		Err: err,
-		Ctx: &gin.Context{},
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
 	}
-	errJSON.ErrorHandler()
 
-	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.User{}, &models.Recipe{}, &models.Ingredients{})
 	DB = db
 }
