@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/wikixen/sazonapp/middleware"
 	"github.com/wikixen/sazonapp/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -15,7 +14,7 @@ import (
 var DB *gorm.DB
 
 func DBConnect(ctx *gin.Context) {
-	middleware.EnvSetup(&gin.Context{})
+	EnvSetup(&gin.Context{})
 
 	HOST := os.Getenv("HOST")
 	DB_PORT := os.Getenv("DB_PORT")
