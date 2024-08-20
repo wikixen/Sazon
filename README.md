@@ -7,12 +7,18 @@
     - [ ] Might need to change Recipe & Ingredient routes
         - I changed the User PATCH route because it didn't work initially, these route may need to be changed in the same way
 - Frontend
-    - [ ] Make landing page
-    - [ ] Make sign up/login page
-    - [ ] Make logged in home page
-    - [ ] 
-    - [ ] 
-    - [ ] 
+    - Implement design 1st, Functionality 2nd
+        - [ ] Make landing view (Inspo from: https://www.boostcamp.app/ )
+            - Two buttons at the top for login/signup
+            - Some sentence saying why site is cool
+            - Some pics from logged in site showing functionality
+        - [ ] Make sign up/login view
+            - A shadcn tab for login/sign up
+        - [ ] Make logged in home view
+            - 
+        - [ ] Make individual recipe view
+        - [ ] 
+        - [ ] Make settings view
 
 - Change DB schema if necessary in the future
 
