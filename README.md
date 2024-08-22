@@ -5,7 +5,7 @@
     - [X] Create Recipe routes
     - [X] Add auth to User 
     - [ ] Might need to change Recipe & Ingredient routes
-        - I changed the User PATCH route because it didn't work initially, these route may need to be changed in the same way
+        - I changed the User PATCH route because it didn't work initially, these routes may need to be changed in the same way
 - Frontend
     - Implement design 1st, Functionality 2nd
         - [ ] Make landing view (Inspo from: https://www.boostcamp.app/ )
@@ -13,12 +13,16 @@
             - Some sentence saying why site is cool
             - Some pics from logged in site showing functionality
         - [ ] Make sign up/login view
-            - A shadcn tab for login/sign up
+            - [x] Two pages which can link to each other and back to landing page
+            - [x] Sign up functionality
+            - [ ] Login functionality
+                - https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications#step-1-building-a-login-page
+        - [ ] Need to figure out handle cookie state
         - [ ] Make logged in home view
-            - 
         - [ ] Make individual recipe view
         - [ ] 
         - [ ] Make settings view
+        - [ ] Make sure colors and themes all sync
 
 - Change DB schema if necessary in the future
 

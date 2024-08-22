@@ -93,8 +93,13 @@ func EditUser(ctx *gin.Context) {
 }
 
 func DeleteUser(ctx *gin.Context) {
-	var user models.User
-	config.DB.Where("id = ?", ctx.Param("id")).Delete(&user)
+	// Fetch ID
+	id := ctx.Param("id")
+
+	// Delete user
+	config.DB.Delete(&models.User{}, id)
+
+	// Response
 	ctx.JSON(http.StatusOK, gin.H{
 		"msg":"User deleted successfully",
 	})
@@ -149,7 +154,7 @@ func VerifyLogin(ctx *gin.Context) {
 
 	// 1st empty string is the path, 2nd is the domain
 	ctx.SetCookie("Authorization", tokenString, 3600*24*30, "", "", false, true)
-	ctx.JSON(http.StatusOK, gin.H{})
+	ctx.JSON(http.StatusOK, tokenString)
 }
 
 func Validate(ctx *gin.Context)  {
