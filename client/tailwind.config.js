@@ -18,39 +18,27 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+        theme:{
+          primary: "hsl(var(--bg-primary))",
+          secondary: "hsl(var(--bg-secondary))",
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+        text: {
+          primary: "hsl(var(--text-primary))",
+          secondary: "hsl(var(--text-secondary))",
+          tertiary: "hsl(var(--text-tertiary))",
+          quaternary: "hsl(var(--text-quaternary))",
+          quinary: "hsl(var(--text-quinary))",
+          sextary: "hsl(var(--text-sextary))",
         },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+        border: {
+          primary: "hsl(var(--border-primary))",
+          secondary: "hsl(var(--border-secondary))",
         },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+        hover: {
+          primary: "hsl(var(--hover-primary))",
+          secondary: "hsl(var(--hover-secondary))",
         },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
+
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -71,6 +59,11 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      fontFamily: {
+        logo1: ["Marck Script", "cursive"],
+        logo2: ["Meow Script", "cursive"],
+        primary: ["Abhaya Libre", "serif"],
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
