@@ -17,8 +17,9 @@
             - [x] Sign up functionality
             - [ ] Login functionality
                 - https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications#step-1-building-a-login-page
-        - [ ] Need to figure out handle cookie state
+            - [ ] Need to figure out handle cookie state
         - [ ] Make logged in home view
+        - [ ] Make all recipe view
         - [ ] Make individual recipe view
         - [ ] 
         - [ ] Make settings view
