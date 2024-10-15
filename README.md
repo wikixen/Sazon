@@ -1,4 +1,4 @@
-
+![SazonApp Logo](./Logo.png)
 # DESC
 This web app allows users to create recipes and log what ingredients they have in their fridge right now. 
 
