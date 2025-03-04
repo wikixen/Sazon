@@ -6,4 +6,4 @@ The app can then filter recipes showing you what recipes you can make with your 
 Whenever a recipe is logged, the ingredients are automatically removed from stored ingredients.
 
 # HAVE DONE
-Backend REST API is done. I need to find a service(Most likely AWS), to deploy it.
+Backend REST API is done. Will implement Android frontend in future.
