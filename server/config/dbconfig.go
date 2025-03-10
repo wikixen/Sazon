@@ -22,10 +22,10 @@ func DBConnect(ctx *gin.Context) {
 	PASSWORD := os.Getenv("PASSWORD")
 
 	dsn := fmt.Sprintf(
-		"postgres://%s:%s@%s:%s/SazonApp", 
-		USER, 
-		PASSWORD, 
-		HOST, 
+		"postgres://%s:%s@%s:%s/SazonApp",
+		USER,
+		PASSWORD,
+		HOST,
 		DB_PORT,
 	)
 
