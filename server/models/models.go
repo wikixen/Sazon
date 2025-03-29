@@ -28,7 +28,6 @@ type Recipe struct {
 type Ingredients struct {
 	IngredientID       uint           `json:"indgredient_id" gorm:"unique; primaryKey"`
 	IngredientName     string         `json:"indgredient_name" gorm:"unique"`
-	IngredientQuantity uint           `json:"indgredient_quantity"`
 	DeletedAt          gorm.DeletedAt `gorm:"index"`
 	CreatedAt          time.Time
 	UpdatedAt          time.Time
