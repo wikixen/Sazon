@@ -1,0 +1,10 @@
+.landingContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tagline {
+  font-size: xx-large;
+}

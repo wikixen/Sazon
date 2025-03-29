@@ -1,0 +1,84 @@
+/* Logged in Header */
+.authHeader {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-start: 0.5rem;
+  margin-inline: 0.5rem;
+}
+
+.whiteLogo {
+  width: 10rem;
+}
+
+.search {
+  --padding: 1.5rem;
+  width: max-content;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem var(--padding);
+  border-radius: var(--padding);
+  background-color: #ffd8e4;
+}
+
+.searchbar {
+  font-size: medium;
+  color: #49454f;
+  margin-left: 0.5rem;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  flex: 1;
+}
+
+.authHeaderBtn {
+  margin-inline: 0.25rem;
+  color: white;
+}
+
+/* Landing Header */
+.landingHeader {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  justify-content: space-between;
+  background-color: #fd2727;
+  color: white;
+}
+
+.redLogo {
+  width: 10rem;
+  margin-inline-start: 1rem;
+}
+
+.loginBtn,
+.signBtn {
+  margin-inline: 0.25rem;
+  margin-top: 1rem;
+}
+
+.loginBtn {
+  border: 1px solid white;
+  background-color: #ec221f;
+  color: white;
+}
+
+.loginBtn:hover {
+  background-color: #c00f0c;
+}
+
+.signBtn {
+  border: 1px solid #900b09;
+  background-color: white;
+  color: #900b09;
+}
+
+.signBtn:hover {
+  background-color: #b3b3b3;
+}
+
+.tagline {
+  margin-inline-start: 1rem;
+}
