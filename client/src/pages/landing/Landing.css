@@ -3,8 +3,13 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  text-align: center;
 }
 
 .tagline {
   font-size: xx-large;
+}
+
+.landingContent img {
+  width: 20rem;
 }

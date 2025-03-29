@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import "./Header.css";
 import { IconContext } from "react-icons";
-import { BiCog, BiHomeAlt2, BiPlusCircle, BiSearch } from "react-icons/bi";
+import { BiHomeAlt2, BiPlusCircle, BiSearch } from "react-icons/bi";
 import sazonLogoWhite from "../../assets/LogoWhiteBg.png";
 import sazonLogoRed from "../../assets/LogoRedBg.png";
 
