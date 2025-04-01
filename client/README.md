@@ -1,23 +1,21 @@
 # TODO
 
-### All pages I need to implement
+### Design Implemented
 
-- [ ] Landing
+- [ ] Header
+- [x] Landing
 - [ ] Home
 - [ ] Create Recipe Page
-- [ ] Settings
-- [ ] Learn More
-- [ ] Support
-- [ ] Feedback
+- [ ] Settings/Profile
+- [x] Learn More
+- [x] Support
+- [x] Feedback
 
 ### Specifics
 
 - General
   - [ ] Add navigation
 - Header
-  - [x] Get Search Icon
-  - [x] CSS to make Search Bar pretty:
-        https://www.youtube.com/watch?v=f6ocDCkCmhM
   - [ ] Implement search functionality
 - Landing
   - [ ] Make login/sign up page

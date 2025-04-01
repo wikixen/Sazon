@@ -1,4 +1,4 @@
-import "./About.css"
+import "./About.css";
 
 export default function About() {
   return (
@@ -8,7 +8,8 @@ export default function About() {
         <p className="longBody">
           Welcome to Sazón, the recipe-sharing app designed to bring friends and
           family together through the joy of cooking—while keeping your kitchen
-          organized!<br /><br />
+          organized!<br />
+          <br />
 
           At Sazón, we believe that great meals start with great planning. Our
           app makes it easy to share your favorite recipes with loved ones,
@@ -21,16 +22,19 @@ export default function About() {
         <h1>Why Sazón?</h1>
         <ul>
           <li>
-            <span className="aboutTagline">🍽 Share the Flavor</span> - Swap recipes with friends and family, or
-            explore a community of food lovers.
+            <span className="aboutTagline">🍽 Share the Flavor</span>{" "}
+            - Swap recipes with friends and family, or explore a community of
+            food lovers.
           </li>
           <li>
-            <span className="aboutTagline">🛒 Smart Pantry Tracking</span> - Log your ingredients, get usage
-            reminders, and even generate shopping lists.
+            <span className="aboutTagline">🛒 Smart Pantry Tracking</span>{" "}
+            - Log your ingredients, get usage reminders, and even generate
+            shopping lists.
           </li>
           <li>
-            <span className="aboutTagline">👨‍🍳 Personalized Cooking</span> - Find recipes based on what you already
-            have, reducing waste and saving money.
+            <span className="aboutTagline">👨‍🍳 Personalized Cooking</span>{" "}
+            - Find recipes based on what you already have, reducing waste and
+            saving money.
           </li>
         </ul>
         <p className="longBody">

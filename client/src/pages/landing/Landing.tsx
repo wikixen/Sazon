@@ -1,7 +1,7 @@
 import "./Landing.css";
-import createRecipesImg from "../../assets/CreateRecipe.png"
-import logRecipeImg from "../../assets/LogRecipe.png"
-import shareRecipeImg from "../../assets/ShareRecipe.png"
+import createRecipesImg from "../../assets/CreateRecipe.png";
+import logRecipeImg from "../../assets/LogRecipe.png";
+import shareRecipeImg from "../../assets/ShareRecipe.png";
 
 export default function Landing() {
   return (

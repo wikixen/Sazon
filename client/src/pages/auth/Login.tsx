@@ -1,4 +1,5 @@
 import { useForm } from "@tanstack/react-form";
+import "./Auth.css";
 
 export default function Login() {
   const form = useForm({
@@ -12,28 +13,27 @@ export default function Login() {
   });
 
   return (
-    <>
+    <section className="authCard">
       <form
         onSubmit={(e) => {
           e.preventDefault();
           e.stopPropagation();
+          form.handleSubmit();
         }}
       >
         <form.Field
           name="username"
           children={(field) => (
-            <div>
-              <label htmlFor="userForm">
-                Username
-                <input
-                  id="userForm"
-                  type="text"
-                  name="userForm"
-                  value={field.state.value}
-                  onChange={(e) => field.handleChange(e.target.value)}
-                />
-              </label>
-            </div>
+            <label htmlFor="userForm">
+              Email or Username<br />
+              <input
+                id="userForm"
+                type="text"
+                name="userForm"
+                value={field.state.value}
+                onChange={(e) => field.handleChange(e.target.value)}
+              />
+            </label>
           )}
         />
         <form.Field
@@ -41,7 +41,7 @@ export default function Login() {
           children={(field) => (
             <div>
               <label htmlFor="pwForm">
-                Password
+                Password<br />
                 <input
                   id="pwForm"
                   type="password"
@@ -53,8 +53,12 @@ export default function Login() {
             </div>
           )}
         />
-        <button type="submit" onClick={form.handleSubmit}>Sign In</button>
+        <button type="submit" onClick={form.handleSubmit} className="loginBtn">
+          Sign In
+        </button>
       </form>
-    </>
+      <a className="authLink">Forgot Password?</a>
+      <a className="authLink">Sign Up here?</a>
+    </section>
   );
 }

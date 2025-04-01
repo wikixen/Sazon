@@ -1,4 +1,5 @@
 import { useForm } from "@tanstack/react-form";
+import "./Auth.css";
 
 export default function SignUp() {
   const form = useForm({
@@ -13,7 +14,7 @@ export default function SignUp() {
   });
 
   return (
-    <>
+    <section className="authCard">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -25,7 +26,7 @@ export default function SignUp() {
           children={(field) => (
             <div>
               <label htmlFor="email">
-                Username
+                Email<br />
                 <input
                   id="email"
                   type="email"
@@ -42,7 +43,7 @@ export default function SignUp() {
           children={(field) => (
             <div>
               <label htmlFor="username">
-                Username
+                Username<br />
                 <input
                   id="username"
                   type="text"
@@ -59,7 +60,7 @@ export default function SignUp() {
           children={(field) => (
             <div>
               <label htmlFor="password">
-                Password
+                Password<br />
                 <input
                   id="password"
                   type="password"
@@ -71,8 +72,11 @@ export default function SignUp() {
             </div>
           )}
         />
-        <button type="submit" onClick={form.handleSubmit}>Sign In</button>
+        <button type="submit" onClick={form.handleSubmit} className="loginBtn">
+          Sign Up
+        </button>
       </form>
-    </>
+      <a className="authLink">Login Here</a>
+    </section>
   );
 }
