@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import "./Header.css";
 import { IconContext } from "react-icons";
-import { BiHomeAlt2, BiPlusCircle, BiSearch } from "react-icons/bi";
+import { BiFridge, BiHomeAlt2, BiPlusCircle, BiSearch } from "react-icons/bi";
 import sazonLogoWhite from "../../assets/LogoWhiteBg.png";
 import sazonLogoRed from "../../assets/LogoRedBg.png";
 
@@ -30,6 +30,9 @@ function AuthHeaderBtns(
       <IconContext.Provider value={{ color: "white" }}>
         <button className="authHeaderBtn">
           <BiHomeAlt2 />
+        </button>
+        <button className="authHeaderBtn">
+          <BiFridge />
         </button>
         <button className="authHeaderBtn">
           <BiPlusCircle />

@@ -48,11 +48,11 @@ export default function Footer() {
     footerItem: [
       {
         text: "Support",
-        hyperlink: "",
+        hyperlink: "/contact",
       },
       {
         text: "Feedback",
-        hyperlink: "",
+        hyperlink: "/feedback",
       },
     ],
   };

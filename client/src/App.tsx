@@ -5,15 +5,31 @@ import Footer from "./components/footer/Footer";
 import Home from "./pages/home/Home";
 import Header from "./components/header/Header";
 import { sampleRecipeData } from "./data/sampleRecipeData";
-import { Recipe } from "./data/models";
+import { User } from "./data/models";
+import { sampleUserData } from "./data/sampleUserData";
+import Pantry from "./pages/home/pantry/Pantry";
+import { createRouter, RouterProvider } from "@tanstack/react-router";
+import { routeTree } from "./routeTree.gen";
+
+const router = createRouter({ routeTree });
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router
+  }
+}
 
 function App() {
   const [auth, setAuth] = useState(true);
 
+  const user: User = sampleUserData[0];
+
   return (
-    <main className="home">
+    <main>
       <Header authStatus={auth} setAuthStatus={setAuth} />
-      {auth ? <Home recipeList={sampleRecipeData} /> : <Landing />}
+      <RouterProvider router={router} />
+      {/* {auth ? <Home recipeList={sampleRecipeData} user={user} /> : <Landing />} */}
+      {/* <Pantry userPantry={user.pantry} /> */}
       <Footer />
     </main>
   );

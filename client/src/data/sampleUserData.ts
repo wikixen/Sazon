@@ -1,58 +1,27 @@
 import { User } from "./models";
 
-const sampleUserData: User[] = [
+export const sampleUserData: User[] = [
   {
     "id": 8616049062138282,
     "email": "#PZSc",
     "username": "dtw",
     "recipes": [{
-      "id": 4352294838208668,
-      "name": "pDp81^",
-      "desc": "9uV",
-      "ingredients": ["@u6f", "q^KMwm", "X!Y6)", ")YPs^"],
-      "createdAt": "TWvP",
-    }, {
-      "id": 4352294838208668,
-      "name": "pDp81^",
-      "desc": "9uV",
-      "ingredients": ["@u6f", "q^KMwm", "X!Y6)", ")YPs^"],
-      "createdAt": "TWvP",
+      "id": 1526300923892158,
+      "user": { "id": 1564165465, "email": "wiki@email.com", "username": "me" },
+      "name": "Zo7dx",
+      "desc":
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "ingredients": [
+        "(yh4",
+        "!!Yr",
+        "#(FY",
+        "5*&hIZf",
+        "oeK",
+        "#^AMWN",
+        "!$hE",
+      ],
+      "createdAt": "kKWc^U",
     }],
-  },
-  {
-    "id": 8729265927811204,
-    "email": "]8K0",
-    "username": "qMSM",
-    "recipes": [{
-      "id": 4352294838208668,
-      "name": "pDp81^",
-      "desc": "9uV",
-      "ingredients": ["@u6f", "q^KMwm", "X!Y6)", ")YPs^"],
-      "createdAt": "TWvP",
-    }, {
-      "id": 4352294838208668,
-      "name": "pDp81^",
-      "desc": "9uV",
-      "ingredients": ["@u6f", "q^KMwm", "X!Y6)", ")YPs^"],
-      "createdAt": "TWvP",
-    }],
-  },
-  {
-    "id": 3140303216505870,
-    "email": "hgVmFWY",
-    "username": "JURAh",
-    "recipes": [{
-      "id": 4352294838208668,
-      "name": "pDp81^",
-      "desc": "9uV",
-      "ingredients": ["@u6f", "q^KMwm", "X!Y6)", ")YPs^"],
-      "createdAt": "TWvP",
-    }, {
-      "id": 4352294838208668,
-      "name": "pDp81^",
-      "desc": "9uV",
-      "ingredients": ["@u6f", "q^KMwm", "X!Y6)", ")YPs^"],
-      "createdAt": "TWvP",
-    }],
+    "pantry": ["Lettuce", "Cabbage", "Bacon"],
   },
 ];
