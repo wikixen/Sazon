@@ -1,4 +1,5 @@
-import "./Footer.css";
+import { Link } from "@tanstack/react-router";
+import "../styles/footer.css";
 
 interface FooterList {
   title: string;
@@ -8,28 +9,6 @@ interface FooterList {
 interface FooterItem {
   text: string;
   hyperlink: string | undefined;
-}
-
-function FooterListItem({ items }: { items: FooterList }) {
-  return (
-    <div className="footerItemContainer">
-      <ul className="footerList">
-        <h3 className="footerItemTitle">{items.title}</h3>
-        {items.footerItem.map((item) =>
-          // Replace a link with correct React syntax
-          item.hyperlink
-            ? (
-              <a href={item.hyperlink} className="footerLink">
-                <li className="footerItem">
-                  {item.text}
-                </li>
-              </a>
-            )
-            : <li className="footerItem">{item.text}</li>
-        )}
-      </ul>
-    </div>
-  );
 }
 
 export default function Footer() {
@@ -66,5 +45,22 @@ export default function Footer() {
       <div />
       <p className="copyrightFooter">&copy; 2024 Sazon</p>
     </footer>
+  );
+}
+
+function FooterListItem({ items }: { items: FooterList }) {
+  return (
+    <div className="footerItemContainer">
+      <ul className="footerList">
+        <h3 className="footerItemTitle">{items.title}</h3>
+        {items.footerItem.map((item) => (
+          <Link to={item.hyperlink} className="footerLink">
+            <li className="footerItem">
+              {item.text}
+            </li>
+          </Link>
+        ))}
+      </ul>
+    </div>
   );
 }

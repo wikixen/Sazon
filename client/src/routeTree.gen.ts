@@ -12,9 +12,9 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as SupportImport } from './routes/support'
+import { Route as LandingImport } from './routes/landing'
 import { Route as FeedbackImport } from './routes/feedback'
-import { Route as LandingImport } from './routes/_landing'
-import { Route as AuthenticatedSettingsImport } from './routes/_authenticated/settings'
+import { Route as AboutImport } from './routes/about'
 import { Route as AuthenticatedHomeImport } from './routes/_authenticated/home'
 
 // Create/Update Routes
@@ -25,20 +25,21 @@ const SupportRoute = SupportImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const LandingRoute = LandingImport.update({
+  id: '/landing',
+  path: '/landing',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const FeedbackRoute = FeedbackImport.update({
   id: '/feedback',
   path: '/feedback',
   getParentRoute: () => rootRoute,
 } as any)
 
-const LandingRoute = LandingImport.update({
-  id: '/_landing',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AuthenticatedSettingsRoute = AuthenticatedSettingsImport.update({
-  id: '/_authenticated/settings',
-  path: '/settings',
+const AboutRoute = AboutImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -52,11 +53,11 @@ const AuthenticatedHomeRoute = AuthenticatedHomeImport.update({
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_landing': {
-      id: '/_landing'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof LandingImport
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
     '/feedback': {
@@ -64,6 +65,13 @@ declare module '@tanstack/react-router' {
       path: '/feedback'
       fullPath: '/feedback'
       preLoaderRoute: typeof FeedbackImport
+      parentRoute: typeof rootRoute
+    }
+    '/landing': {
+      id: '/landing'
+      path: '/landing'
+      fullPath: '/landing'
+      preLoaderRoute: typeof LandingImport
       parentRoute: typeof rootRoute
     }
     '/support': {
@@ -80,72 +88,65 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedHomeImport
       parentRoute: typeof rootRoute
     }
-    '/_authenticated/settings': {
-      id: '/_authenticated/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof AuthenticatedSettingsImport
-      parentRoute: typeof rootRoute
-    }
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '': typeof LandingRoute
+  '/about': typeof AboutRoute
   '/feedback': typeof FeedbackRoute
+  '/landing': typeof LandingRoute
   '/support': typeof SupportRoute
   '/home': typeof AuthenticatedHomeRoute
-  '/settings': typeof AuthenticatedSettingsRoute
 }
 
 export interface FileRoutesByTo {
-  '': typeof LandingRoute
+  '/about': typeof AboutRoute
   '/feedback': typeof FeedbackRoute
+  '/landing': typeof LandingRoute
   '/support': typeof SupportRoute
   '/home': typeof AuthenticatedHomeRoute
-  '/settings': typeof AuthenticatedSettingsRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/_landing': typeof LandingRoute
+  '/about': typeof AboutRoute
   '/feedback': typeof FeedbackRoute
+  '/landing': typeof LandingRoute
   '/support': typeof SupportRoute
   '/_authenticated/home': typeof AuthenticatedHomeRoute
-  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/feedback' | '/support' | '/home' | '/settings'
+  fullPaths: '/about' | '/feedback' | '/landing' | '/support' | '/home'
   fileRoutesByTo: FileRoutesByTo
-  to: '' | '/feedback' | '/support' | '/home' | '/settings'
+  to: '/about' | '/feedback' | '/landing' | '/support' | '/home'
   id:
     | '__root__'
-    | '/_landing'
+    | '/about'
     | '/feedback'
+    | '/landing'
     | '/support'
     | '/_authenticated/home'
-    | '/_authenticated/settings'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  LandingRoute: typeof LandingRoute
+  AboutRoute: typeof AboutRoute
   FeedbackRoute: typeof FeedbackRoute
+  LandingRoute: typeof LandingRoute
   SupportRoute: typeof SupportRoute
   AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
-  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  LandingRoute: LandingRoute,
+  AboutRoute: AboutRoute,
   FeedbackRoute: FeedbackRoute,
+  LandingRoute: LandingRoute,
   SupportRoute: SupportRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
-  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
 }
 
 export const routeTree = rootRoute
@@ -158,27 +159,27 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/_landing",
+        "/about",
         "/feedback",
+        "/landing",
         "/support",
-        "/_authenticated/home",
-        "/_authenticated/settings"
+        "/_authenticated/home"
       ]
     },
-    "/_landing": {
-      "filePath": "_landing.tsx"
+    "/about": {
+      "filePath": "about.tsx"
     },
     "/feedback": {
       "filePath": "feedback.tsx"
+    },
+    "/landing": {
+      "filePath": "landing.tsx"
     },
     "/support": {
       "filePath": "support.tsx"
     },
     "/_authenticated/home": {
       "filePath": "_authenticated/home.tsx"
-    },
-    "/_authenticated/settings": {
-      "filePath": "_authenticated/settings.tsx"
     }
   }
 }

@@ -1,6 +1,11 @@
-import "./About.css";
+import { createFileRoute } from '@tanstack/react-router'
+import "../styles/about.css"
 
-export default function About() {
+export const Route = createFileRoute('/about')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
   return (
     <section className="aboutContent">
       <article>
