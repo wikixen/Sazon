@@ -1,27 +1,28 @@
-import { Tooltip } from "radix-ui";
+import { Link } from "@tanstack/react-router";
 import { IconType } from "react-icons";
 
+interface IconBtnItem {
+  Icon: IconType;
+  btnDesc?: string;
+  hyperlink?: string;
+}
+
 export default function IconBtn(
-  { Icon, btnDesc, className }: {
-    Icon: IconType;
-    btnDesc: string;
-    className: string;
-  },
+  { Icon, btnDesc, hyperlink }: IconBtnItem,
 ) {
-  return (
-    <Tooltip.Provider>
-      <Tooltip.Root>
-        <Tooltip.Trigger asChild>
-          <button className={className}>
-            <Icon />
-          </button>
-        </Tooltip.Trigger>
-        <Tooltip.Portal>
-          <Tooltip.Content>
-            {btnDesc}
-          </Tooltip.Content>
-        </Tooltip.Portal>
-      </Tooltip.Root>
-    </Tooltip.Provider>
-  );
+  if (!hyperlink) {
+    return (
+      <button className="text-white mx-1 bg-[#ec221f] rounded-sm px-6 py-3 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]">
+        <Icon />
+      </button>
+    );
+  } else {
+    return (
+      <Link to={hyperlink}>
+        <button className="text-white mx-1 bg-[#ec221f] rounded-sm px-6 py-3 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]">
+          <Icon />
+        </button>
+      </Link>
+    );
+  }
 }

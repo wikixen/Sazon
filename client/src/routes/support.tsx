@@ -1,11 +1,12 @@
-import { createFileRoute } from '@tanstack/react-router'
-import ContactForm from '../components/ContactForm';
-import "../styles/contact.css"
+import { createFileRoute } from "@tanstack/react-router";
+import ContactForm from "../components/ContactForm";
 
-export const Route = createFileRoute('/support')({
+export const Route = createFileRoute("/support")({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  return <ContactForm subjectDesc="Need Help Send a Message to Our Support Staff" />;
+  return (
+    <ContactForm subjectDesc="Need Help Send a Message to Our Support Staff" />
+  );
 }

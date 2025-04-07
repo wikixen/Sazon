@@ -10,148 +10,148 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as SupportImport } from './routes/support'
-import { Route as LandingImport } from './routes/landing'
-import { Route as FeedbackImport } from './routes/feedback'
-import { Route as AboutImport } from './routes/about'
-import { Route as AuthenticatedHomeImport } from './routes/_authenticated/home'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as SupportImport } from "./routes/support";
+import { Route as FeedbackImport } from "./routes/feedback";
+import { Route as AboutImport } from "./routes/about";
+import { Route as IndexImport } from "./routes/index";
+import { Route as AuthenticatedHomeImport } from "./routes/_authenticated/home";
 
 // Create/Update Routes
 
 const SupportRoute = SupportImport.update({
-  id: '/support',
-  path: '/support',
+  id: "/support",
+  path: "/support",
   getParentRoute: () => rootRoute,
-} as any)
-
-const LandingRoute = LandingImport.update({
-  id: '/landing',
-  path: '/landing',
-  getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const FeedbackRoute = FeedbackImport.update({
-  id: '/feedback',
-  path: '/feedback',
+  id: "/feedback",
+  path: "/feedback",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const AboutRoute = AboutImport.update({
-  id: '/about',
-  path: '/about',
+  id: "/about",
+  path: "/about",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
+
+const IndexRoute = IndexImport.update({
+  id: "/",
+  path: "/",
+  getParentRoute: () => rootRoute,
+} as any);
 
 const AuthenticatedHomeRoute = AuthenticatedHomeImport.update({
-  id: '/_authenticated/home',
-  path: '/home',
+  id: "/_authenticated/home",
+  path: "/home",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
-      parentRoute: typeof rootRoute
-    }
-    '/feedback': {
-      id: '/feedback'
-      path: '/feedback'
-      fullPath: '/feedback'
-      preLoaderRoute: typeof FeedbackImport
-      parentRoute: typeof rootRoute
-    }
-    '/landing': {
-      id: '/landing'
-      path: '/landing'
-      fullPath: '/landing'
-      preLoaderRoute: typeof LandingImport
-      parentRoute: typeof rootRoute
-    }
-    '/support': {
-      id: '/support'
-      path: '/support'
-      fullPath: '/support'
-      preLoaderRoute: typeof SupportImport
-      parentRoute: typeof rootRoute
-    }
-    '/_authenticated/home': {
-      id: '/_authenticated/home'
-      path: '/home'
-      fullPath: '/home'
-      preLoaderRoute: typeof AuthenticatedHomeImport
-      parentRoute: typeof rootRoute
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/about": {
+      id: "/about";
+      path: "/about";
+      fullPath: "/about";
+      preLoaderRoute: typeof AboutImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/feedback": {
+      id: "/feedback";
+      path: "/feedback";
+      fullPath: "/feedback";
+      preLoaderRoute: typeof FeedbackImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/support": {
+      id: "/support";
+      path: "/support";
+      fullPath: "/support";
+      preLoaderRoute: typeof SupportImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/_authenticated/home": {
+      id: "/_authenticated/home";
+      path: "/home";
+      fullPath: "/home";
+      preLoaderRoute: typeof AuthenticatedHomeImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/about': typeof AboutRoute
-  '/feedback': typeof FeedbackRoute
-  '/landing': typeof LandingRoute
-  '/support': typeof SupportRoute
-  '/home': typeof AuthenticatedHomeRoute
+  "/": typeof IndexRoute;
+  "/about": typeof AboutRoute;
+  "/feedback": typeof FeedbackRoute;
+  "/support": typeof SupportRoute;
+  "/home": typeof AuthenticatedHomeRoute;
 }
 
 export interface FileRoutesByTo {
-  '/about': typeof AboutRoute
-  '/feedback': typeof FeedbackRoute
-  '/landing': typeof LandingRoute
-  '/support': typeof SupportRoute
-  '/home': typeof AuthenticatedHomeRoute
+  "/": typeof IndexRoute;
+  "/about": typeof AboutRoute;
+  "/feedback": typeof FeedbackRoute;
+  "/support": typeof SupportRoute;
+  "/home": typeof AuthenticatedHomeRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/about': typeof AboutRoute
-  '/feedback': typeof FeedbackRoute
-  '/landing': typeof LandingRoute
-  '/support': typeof SupportRoute
-  '/_authenticated/home': typeof AuthenticatedHomeRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexRoute;
+  "/about": typeof AboutRoute;
+  "/feedback": typeof FeedbackRoute;
+  "/support": typeof SupportRoute;
+  "/_authenticated/home": typeof AuthenticatedHomeRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/about' | '/feedback' | '/landing' | '/support' | '/home'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/about' | '/feedback' | '/landing' | '/support' | '/home'
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: "/" | "/about" | "/feedback" | "/support" | "/home";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/" | "/about" | "/feedback" | "/support" | "/home";
   id:
-    | '__root__'
-    | '/about'
-    | '/feedback'
-    | '/landing'
-    | '/support'
-    | '/_authenticated/home'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/about"
+    | "/feedback"
+    | "/support"
+    | "/_authenticated/home";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  AboutRoute: typeof AboutRoute
-  FeedbackRoute: typeof FeedbackRoute
-  LandingRoute: typeof LandingRoute
-  SupportRoute: typeof SupportRoute
-  AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
+  IndexRoute: typeof IndexRoute;
+  AboutRoute: typeof AboutRoute;
+  FeedbackRoute: typeof FeedbackRoute;
+  SupportRoute: typeof SupportRoute;
+  AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   FeedbackRoute: FeedbackRoute,
-  LandingRoute: LandingRoute,
   SupportRoute: SupportRoute,
   AuthenticatedHomeRoute: AuthenticatedHomeRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {
@@ -159,21 +159,21 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
+        "/",
         "/about",
         "/feedback",
-        "/landing",
         "/support",
         "/_authenticated/home"
       ]
+    },
+    "/": {
+      "filePath": "index.tsx"
     },
     "/about": {
       "filePath": "about.tsx"
     },
     "/feedback": {
       "filePath": "feedback.tsx"
-    },
-    "/landing": {
-      "filePath": "landing.tsx"
     },
     "/support": {
       "filePath": "support.tsx"

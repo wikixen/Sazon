@@ -1,150 +1,91 @@
-import { Dialog, DropdownMenu } from "radix-ui";
-import React, { Dispatch } from "react";
-import { IconContext } from "react-icons";
+import { Link } from "@tanstack/react-router";
+import { IconContext, IconType } from "react-icons";
 import {
   BiCog,
   BiFridge,
   BiHomeAlt2,
   BiPlusCircle,
   BiSearch,
-  BiX,
 } from "react-icons/bi";
 import sazonLogoRed from "../assets/LogoRedBg.png";
 import sazonLogoWhite from "../assets/LogoWhiteBg.png";
+// import "../styles/header.css";
 import IconBtn from "./IconBtn";
-import "../styles/header.css";
+import { useForm } from "@tanstack/react-form";
+import { Tabs } from "radix-ui";
 
-export default function Header(
-  { authStatus, setAuthStatus }: {
-    authStatus: boolean;
-    setAuthStatus: Dispatch<React.SetStateAction<boolean>>;
-  },
-) {
-  if (authStatus) {
+export default function Header({ authStatus }: { authStatus: boolean }) {
+  if (!authStatus) {
     return (
-      <header className="authHeader">
-        <a href="/">
-          <img src={sazonLogoWhite} className="whiteLogo" alt="Sazon Logo" />
-        </a>
+      <header className="grid grid-cols-[auto_auto_auto] items-center justify-between mt-2 mx-4">
+        <Link to="/home">
+          <img src={sazonLogoWhite} className="w-36" alt="Sazon Logo" />
+        </Link>
         <SearchBar />
-        <AuthHeaderBtns setAuthStatus={setAuthStatus} />
+        <HeaderBtns />
       </header>
     );
   } else {
     return (
-      <header className="landingHeader">
-        <div className="">
-          <img src={sazonLogoRed} className="redLogo" alt="Sazon Logo" />
-          <h1 className="tagline">
+      <header className="grid grid-cols-[auto_1fr_auto] items-start justify-between bg-[#fd2727] text-white">
+        <div>
+          <Link to="/">
+            <img src={sazonLogoRed} className="w-60 ms-2" alt="Sazon Logo" />
+          </Link>
+          <h1 className="ms-4 text-[3rem]">
             Add some spice to<br /> your life with Sazon
           </h1>
         </div>
         <div />
-        <div className="landingHeaderBtns">
-          <button className="loginBtn">Log In</button>
-          <button className="signBtn">Sign Up</button>
+        <div>
+          <button className="mx-1 mt-4 border-white border-1 bg-[#ec221f] rounded-sm px-2 py-3 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]">
+            Log In
+          </button>
+          <button className="mx-1 mt-4 border-[#900b09] border-1 bg-white text-[#900b09] rounded-sm px-2 py-3 text-lg cursor-pointer transition-colors hover:bg-[#b3b3b3]">
+            Sign Up
+          </button>
         </div>
       </header>
     );
   }
 }
 
-// AuthHeaderBtns is the header toolbar shown when a user is logged in
-function AuthHeaderBtns(
-  { setAuthStatus }: { setAuthStatus: Dispatch<React.SetStateAction<boolean>> },
-) {
+interface IconBtnItem {
+  icon: IconType;
+  btnDesc?: string;
+  hyperlink?: string;
+}
+
+// HeaderBtns is the header toolbar shown when a user is logged in
+function HeaderBtns() {
+  // const dropdownItems = [{ name: "Settings" }, { name: "Log Out" }];
+
+  const headerBtns: IconBtnItem[] = [
+    { icon: BiHomeAlt2, btnDesc: "Home", hyperlink: "/home" },
+    { icon: BiFridge, btnDesc: "Check your pantry" },
+    { icon: BiPlusCircle, btnDesc: "Create a recipe" },
+    { icon: BiCog, btnDesc: "Settings" },
+  ];
+
   return (
     <div className="authHeaderBtns">
       <IconContext.Provider value={{ color: "white" }}>
-        <button className="authHeaderBtn">
-          <BiHomeAlt2 />
-        </button>
-        <IconBtn
-          Icon={BiFridge}
-          btnDesc="Check your pantry"
-          className={"authHeaderBtn"}
-        />
-        <CreateRecipe />
-        <HeaderDropdown setAuthStatus={setAuthStatus} />
+        {headerBtns.map((item) => (
+          <IconBtn
+            Icon={item.icon}
+            btnDesc={item.btnDesc}
+            hyperlink={item.hyperlink}
+          />
+        ))}
+        {/* <HeaderDropdown BtnContent={BiCog} dropdownItems={dropdownItems} /> */}
       </IconContext.Provider>
     </div>
   );
 }
 
-function CreateRecipe() {
-  return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
-        <IconBtn
-          Icon={BiPlusCircle}
-          btnDesc="Create a recipe"
-          className={"authHeaderBtn"}
-        />
-      </Dialog.Trigger>
-
-      <Dialog.Portal>
-        <Dialog.Overlay />
-        <Dialog.Content>
-          <Dialog.Title>New Recipe</Dialog.Title>
-          <Dialog.Description>
-            Create a new recipe here. Separate ingredients by commas or spaces
-            Click save when you're done.
-          </Dialog.Description>
-          <fieldset>
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="ingredients">Ingredients</label>
-            <input type="text" id="ingredients" />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="description">Description</label>
-            <input type="text" id="description" />
-          </fieldset>
-          <Dialog.Close asChild>
-            <button>Save changes</button>
-          </Dialog.Close>
-          <Dialog.Close asChild>
-            <button className="IconButton" aria-label="Close">
-              <BiX />
-            </button>
-          </Dialog.Close>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
-  );
-}
-
-// Dropdown menu for Settings Dropdown in AuthHeaderBtns
-function HeaderDropdown(
-  { setAuthStatus }: { setAuthStatus: Dispatch<React.SetStateAction<boolean>> },
-) {
-  return (
-    <DropdownMenu.Root>
-      <DropdownMenu.Trigger asChild>
-        <button className="authHeaderBtn" aria-label="Settings">
-          <BiCog />
-        </button>
-      </DropdownMenu.Trigger>
-
-      <DropdownMenu.Portal>
-        <DropdownMenu.Content>
-          <DropdownMenu.Item>
-            Settings
-          </DropdownMenu.Item>
-          <DropdownMenu.Item onClick={() => setAuthStatus(false)}>
-            Log Out
-          </DropdownMenu.Item>
-        </DropdownMenu.Content>
-      </DropdownMenu.Portal>
-    </DropdownMenu.Root>
-  );
-}
-
 function SearchBar() {
   return (
-    <div className="search">
+    <div className="w-max min-w-[300px] flex items-center px-2 py-3 rounded-full bg-[#ffd8e4]">
       <IconContext.Provider value={{ color: "#49454F", size: "1.25rem" }}>
         <BiSearch />
       </IconContext.Provider>
@@ -152,9 +93,166 @@ function SearchBar() {
         type="search"
         name="searchbar"
         id="searchbar"
-        className="searchbar"
         placeholder="Search Recipes"
+        className="text-md ml-4 outline-none border-none bg-transparent flex-1"
       />
     </div>
+  );
+}
+
+// AuthTabs are the tabs for the Login & Sign Up Buttons
+function AuthTabs() {
+  const loginForm = useForm({
+    defaultValues: {
+      username: "",
+      password: "",
+    },
+    onSubmit: ({ value }) => {
+      console.log(value);
+    },
+  });
+  const signForm = useForm({
+    defaultValues: {
+      email: "",
+      username: "",
+      password: "",
+    },
+    onSubmit: ({ value }) => {
+      console.log(value);
+    },
+  });
+
+  return (
+    <>
+      <Tabs.Content
+        className="grow rounded-b-md bg-white p-5 outline-none focus:shadow-[0_0_0_2px] focus:shadow-black"
+        value={"tab1"}
+      >
+        <form
+          className="flex flex-col gap-4 items-center"
+          onSubmit={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            loginForm.handleSubmit();
+          }}
+        >
+          <loginForm.Field
+            name="username"
+            children={(field) => (
+              <label htmlFor="userForm" className="text-lg">
+                Email or Username<br />
+                <input
+                  id="userForm"
+                  className="w-[15rem] h-10 border-1 rounded-sm ps-2 focus:outline-[.1rem]"
+                  type="text"
+                  name="userForm"
+                  value={field.state.value}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                />
+              </label>
+            )}
+          />
+          <loginForm.Field
+            name="password"
+            children={(field) => (
+              <div>
+                <label htmlFor="pwForm" className="text-lg">
+                  Password<br />
+                  <input
+                    id="pwForm"
+                    className="w-[15rem] h-10 border-1 rounded-sm ps-2 focus:outline-[.1rem]"
+                    type="password"
+                    name="pwForm"
+                    value={field.state.value}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                  />
+                </label>
+              </div>
+            )}
+          />
+          <button
+            type="submit"
+            onClick={loginForm.handleSubmit}
+            className="text-white mx-1 bg-[#ec221f] rounded-sm px-6 py-3 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]"
+          >
+            Sign In
+          </button>
+        </form>
+      </Tabs.Content>
+      <Tabs.Content
+        className="grow rounded-b-md bg-white p-5 outline-none focus:shadow-[0_0_0_2px] focus:shadow-black"
+        value="tab2"
+      >
+        <form
+          className="flex flex-col gap-4 items-center"
+          onSubmit={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+        >
+          <signForm.Field
+            name="email"
+            children={(field) => (
+              <div>
+                <label htmlFor="email" className="text-lg">
+                  Email<br />
+                  <input
+                    id="email"
+                    className="w-[16rem] h-10 border-1 rounded-sm ps-2 focus:outline-[.1rem]"
+                    type="email"
+                    name="email"
+                    value={field.state.value}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                  />
+                </label>
+              </div>
+            )}
+          />
+          <signForm.Field
+            name="username"
+            children={(field) => (
+              <div>
+                <label htmlFor="username" className="text-lg">
+                  Username<br />
+                  <input
+                    id="username"
+                    className="w-[16rem] h-10 border-1 rounded-sm ps-2 focus:outline-[.1rem]"
+                    type="text"
+                    name="username"
+                    value={field.state.value}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                  />
+                </label>
+              </div>
+            )}
+          />
+          <signForm.Field
+            name="password"
+            children={(field) => (
+              <div>
+                <label htmlFor="password" className="text-lg">
+                  Password<br />
+                  <input
+                    id="password"
+                    className="w-[16rem] h-10 border-1 rounded-sm ps-2 focus:outline-[.1rem]"
+                    type="password"
+                    name="password"
+                    value={field.state.value}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                  />
+                </label>
+              </div>
+            )}
+          />
+          <button
+            type="submit"
+            onClick={signForm.handleSubmit}
+            className="w-[7rem] text-white mx-1 bg-[#ec221f] rounded-sm px-6 py-3 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]"
+          >
+            Sign Up
+          </button>
+        </form>
+      </Tabs.Content>
+    </>
   );
 }

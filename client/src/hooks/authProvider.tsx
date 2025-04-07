@@ -26,7 +26,7 @@ const AuthProvider = ({ children }: Children) => {
         setUser(res.data.user);
         setToken(res.token);
         localStorage.setItem("site", res.token);
-        // navigate("/")
+        navigate({ to: "/home" });
         return;
       }
       throw new Error(res.message);
@@ -39,7 +39,7 @@ const AuthProvider = ({ children }: Children) => {
     setUser(null);
     setToken("");
     localStorage.removeItem("site");
-    // navigate("/")
+    navigate({ to: "/" });
   };
 
   return (

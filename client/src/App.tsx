@@ -1,9 +1,6 @@
 import { createRouter, RouterProvider } from "@tanstack/react-router";
-import { useState } from "react";
-import "./App.css";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
 import { routeTree } from "./routeTree.gen";
+import HeaderDialog from "./components/Dialog";
 
 const router = createRouter({ routeTree });
 
@@ -14,13 +11,10 @@ declare module "@tanstack/react-router" {
 }
 
 function App() {
-  const [auth, setAuth] = useState(false);
-
   return (
-    <main>
-      <Header authStatus={auth} setAuthStatus={setAuth} />
-      <RouterProvider router={router} />
-      {/* <Footer /> */}
+    <main className="grid grid-rows-[auto_1fr_auto] min-h-screen">
+      <HeaderDialog button={<button>Test</button>}/>
+      {/* <RouterProvider router={router} /> */}
     </main>
   );
 }

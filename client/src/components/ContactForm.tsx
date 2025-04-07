@@ -13,8 +13,9 @@ export default function ContactForm(
     },
   });
   return (
-    <section className="contactForm">
+    <section className="flex flex-row gap-6 items-center justify-center">
       <form
+        className="flex flex-col gap-4 items-center"
         onSubmit={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -24,15 +25,17 @@ export default function ContactForm(
         <form.Field
           name="subject"
           children={(field) => (
-            <label htmlFor="subject">
+            <label htmlFor="subject" className="text-xl text-center">
               {subjectDesc}
               <br />
               <input
                 id="subject"
+                className="w-120 px-4 p-1 outline-none border-1 rounded-md"
                 type="text"
                 name="subject"
                 value={field.state.value}
-                onChange={(e) => field.handleChange(e.target.value)}
+                onChange={(e) =>
+                  field.handleChange(e.target.value)}
               />
             </label>
           )}
@@ -40,9 +43,9 @@ export default function ContactForm(
         <form.Field
           name="body"
           children={(field) => (
-            <input
+            <textarea
               id="body"
-              type="text"
+              className="w-120 h-80 p-4 outline-none border-1 rounded-md resize-none"
               name="body"
               value={field.state.value}
               onChange={(e) => field.handleChange(e.target.value)}
@@ -52,7 +55,7 @@ export default function ContactForm(
         <button
           type="submit"
           onClick={form.handleSubmit}
-          className="contactBtn"
+          className="text-white w-30 bg-[#ec221f] rounded-sm px-2 py-3 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]"
         >
           Submit
         </button>

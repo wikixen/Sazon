@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import "../styles/footer.css";
 
 interface FooterList {
   title: string;
@@ -27,7 +26,7 @@ export default function Footer() {
     footerItem: [
       {
         text: "Support",
-        hyperlink: "/contact",
+        hyperlink: "/support",
       },
       {
         text: "Feedback",
@@ -37,30 +36,33 @@ export default function Footer() {
   };
 
   return (
-    <footer>
-      <div className="footerListsPlural">
+    <footer className="grid grid-cols-[auto_1fr_auto] items-end border-t-1 mx-4 h-auto">
+      <section className="flex gap-4">
         <FooterListItem items={aboutItems} />
         <FooterListItem items={contactItems} />
-      </div>
+      </section>
       <div />
-      <p className="copyrightFooter">&copy; 2024 Sazon</p>
+      <p>&copy; 2024 Sazon</p>
     </footer>
   );
 }
 
 function FooterListItem({ items }: { items: FooterList }) {
   return (
-    <div className="footerItemContainer">
-      <ul className="footerList">
-        <h3 className="footerItemTitle">{items.title}</h3>
+    <article>
+      <ul className="list-none">
+        <h3 className="font-bold">{items.title}</h3>
         {items.footerItem.map((item) => (
-          <Link to={item.hyperlink} className="footerLink">
+          <Link
+            to={item.hyperlink}
+            className="no-underline hover:underline hover:text-gray-400"
+          >
             <li className="footerItem">
               {item.text}
             </li>
           </Link>
         ))}
       </ul>
-    </div>
+    </article>
   );
 }
