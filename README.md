@@ -24,11 +24,11 @@ ingredients, adding nutrition facts, calorie tracking, etc.)
       [auth](https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5)
 - [x] Finish Router implementation
 - [x] Switch from CSS to Tailwind
-- [ ] Refactor pages with
-      RadixUI.[Palette](https://www.radix-ui.com/colors/custom) &
-      [Themes](https://www.radix-ui.com/themes/docs/overview/getting-started)
-  - [ ] Turn Login, Sign Up, & Pantry? into dialogs
-- [ ] Refactor CSS
+- [x] Refactor CSS
+- [ ] Refactor pages with RadixUI.
+  - [x] Turn Login, Sign Up, & <s>Pantry?</s> into dialogs
+  - [ ] Edit Dialog on Recipe Edit
+  - [ ] Settings Tabs in /settings
 - [ ] Finish [Tanstack Form implementation](https://tanstack.com/form/latest)
 - [ ] Add tanstack [Query](https://tanstack.com/query/latest)
 - [ ] Add tanstack [virtualizer](https://tanstack.com/virtual/latest)

@@ -1,45 +1,39 @@
 import { Dialog } from "radix-ui";
+import { IconContext } from "react-icons";
 import { BiX } from "react-icons/bi";
 
 interface DialogProps {
-  button: JSX.Element
+  aria: string;
+  button: JSX.Element;
+  content: JSX.Element;
 }
 
 export default function HeaderDialog(
-  {button}: DialogProps
+  { aria, button, content }: DialogProps,
 ) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
         {button}
       </Dialog.Trigger>
+
       <Dialog.Portal>
-        <Dialog.Overlay />
-        <Dialog.Content>
-          <Dialog.Title>Edit profile</Dialog.Title>
-          <Dialog.Description>
-            Make changes to your profile here. Click save when you're done.
-          </Dialog.Description>
-          <fieldset>
-            <label htmlFor="name">
-              Name
-            </label>
-            <input id="name" defaultValue="Pedro Duarte" />
-          </fieldset>
-          <fieldset>
-            <label htmlFor="username">
-              Username
-            </label>
-            <input id="username" defaultValue="@peduarte" />
-          </fieldset>
+        <Dialog.Overlay className="fixed inset-0 bg-black/50" />
+        <Dialog.Content
+          className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-8 shadow rounded-md bg-white"
+          aria-describedby={aria}
+        >
           <Dialog.Close asChild>
-            <button>Save changes</button>
-          </Dialog.Close>
-          <Dialog.Close asChild>
-            <button aria-label="Close">
-              <BiX />
+            <button
+              aria-label="Close"
+              className="cursor-pointer transition-colors hover:bg-gray-100 rounded-md"
+            >
+              <IconContext.Provider value={{ size: "2rem" }}>
+                <BiX />
+              </IconContext.Provider>
             </button>
           </Dialog.Close>
+          {content}
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

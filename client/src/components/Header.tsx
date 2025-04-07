@@ -12,9 +12,28 @@ import sazonLogoWhite from "../assets/LogoWhiteBg.png";
 // import "../styles/header.css";
 import IconBtn from "./IconBtn";
 import { useForm } from "@tanstack/react-form";
-import { Tabs } from "radix-ui";
+import { Dialog, Tabs } from "radix-ui";
+import HeaderDialog from "./Dialog";
+import { TabGroup } from "./TabGroup";
+import HeaderDropdown from "./Dropdown";
+
+/** Header contains all files that concern the header
+ * AuthTabs is for the Login/Sign Up dialog in the header that shows for guests
+ * SearchBar & HeaderBtns are for the header when a user is logged in
+ */
 
 export default function Header({ authStatus }: { authStatus: boolean }) {
+  const loginBtn = (
+    <button className="mx-1 mt-4 border-white border-1 bg-[#ec221f] rounded-sm px-2 py-3 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]">
+      Log In
+    </button>
+  );
+  const signUpBtn = (
+    <button className="mx-1 mt-4 border-[#900b09] border-1 bg-white text-[#900b09] rounded-sm px-2 py-3 text-lg cursor-pointer transition-colors hover:bg-[#b3b3b3]">
+      Sign Up
+    </button>
+  );
+
   if (!authStatus) {
     return (
       <header className="grid grid-cols-[auto_auto_auto] items-center justify-between mt-2 mx-4">
@@ -38,12 +57,28 @@ export default function Header({ authStatus }: { authStatus: boolean }) {
         </div>
         <div />
         <div>
-          <button className="mx-1 mt-4 border-white border-1 bg-[#ec221f] rounded-sm px-2 py-3 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]">
-            Log In
-          </button>
-          <button className="mx-1 mt-4 border-[#900b09] border-1 bg-white text-[#900b09] rounded-sm px-2 py-3 text-lg cursor-pointer transition-colors hover:bg-[#b3b3b3]">
-            Sign Up
-          </button>
+          <HeaderDialog
+            aria="Login"
+            button={loginBtn}
+            content={
+              <TabGroup
+                ariaLabel={"Login/Sign Up"}
+                tabs={["Login", "Sign Up"]}
+                content={<AuthTabs />}
+              />
+            }
+          />
+          <HeaderDialog
+            aria="Sign Up"
+            button={signUpBtn}
+            content={
+              <TabGroup
+                ariaLabel={"Login/Sign Up"}
+                tabs={["Login", "Sign Up"]}
+                content={<AuthTabs />}
+              />
+            }
+          />
         </div>
       </header>
     );
@@ -51,20 +86,26 @@ export default function Header({ authStatus }: { authStatus: boolean }) {
 }
 
 interface IconBtnItem {
-  icon: IconType;
+  icon?: IconType;
   btnDesc?: string;
   hyperlink?: string;
+  specialBtn?: JSX.Element;
 }
 
 // HeaderBtns is the header toolbar shown when a user is logged in
 function HeaderBtns() {
-  // const dropdownItems = [{ name: "Settings" }, { name: "Log Out" }];
+  const dropdownItems = [{ name: "Settings" }, { name: "Log Out" }];
 
   const headerBtns: IconBtnItem[] = [
-    { icon: BiHomeAlt2, btnDesc: "Home", hyperlink: "/home" },
+    { icon: BiHomeAlt2, hyperlink: "/home" },
     { icon: BiFridge, btnDesc: "Check your pantry" },
     { icon: BiPlusCircle, btnDesc: "Create a recipe" },
-    { icon: BiCog, btnDesc: "Settings" },
+    {
+      hyperlink:"/settings",
+      specialBtn: (
+        <HeaderDropdown BtnContent={BiCog} dropdownItems={dropdownItems} />
+      ),
+    },
   ];
 
   return (
@@ -75,9 +116,9 @@ function HeaderBtns() {
             Icon={item.icon}
             btnDesc={item.btnDesc}
             hyperlink={item.hyperlink}
+            specialBtn={item.specialBtn}
           />
         ))}
-        {/* <HeaderDropdown BtnContent={BiCog} dropdownItems={dropdownItems} /> */}
       </IconContext.Provider>
     </div>
   );
@@ -100,7 +141,7 @@ function SearchBar() {
   );
 }
 
-// AuthTabs are the tabs for the Login & Sign Up Buttons
+// AuthTabs are the tabs for the Login & Sign Up Buttons when a guest arrives
 function AuthTabs() {
   const loginForm = useForm({
     defaultValues: {
@@ -125,7 +166,7 @@ function AuthTabs() {
   return (
     <>
       <Tabs.Content
-        className="grow rounded-b-md bg-white p-5 outline-none focus:shadow-[0_0_0_2px] focus:shadow-black"
+        className="grow rounded-b-md bg-white p-5 outline-none"
         value={"tab1"}
       >
         <form
@@ -170,13 +211,15 @@ function AuthTabs() {
               </div>
             )}
           />
-          <button
-            type="submit"
-            onClick={loginForm.handleSubmit}
-            className="text-white mx-1 bg-[#ec221f] rounded-sm px-6 py-3 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]"
-          >
-            Sign In
-          </button>
+          <Dialog.Close asChild>
+            <button
+              type="submit"
+              onClick={loginForm.handleSubmit}
+              className="text-white mx-1 bg-[#ec221f] rounded-sm px-6 py-3 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]"
+            >
+              Sign In
+            </button>
+          </Dialog.Close>
         </form>
       </Tabs.Content>
       <Tabs.Content
@@ -244,13 +287,15 @@ function AuthTabs() {
               </div>
             )}
           />
-          <button
-            type="submit"
-            onClick={signForm.handleSubmit}
-            className="w-[7rem] text-white mx-1 bg-[#ec221f] rounded-sm px-6 py-3 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]"
-          >
-            Sign Up
-          </button>
+          <Dialog.Close asChild>
+            <button
+              type="submit"
+              onClick={signForm.handleSubmit}
+              className="w-[7rem] text-white mx-1 bg-[#ec221f] rounded-sm px-6 py-3 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]"
+            >
+              Sign Up
+            </button>
+          </Dialog.Close>
         </form>
       </Tabs.Content>
     </>

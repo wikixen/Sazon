@@ -6,6 +6,7 @@ interface FooterList {
 }
 
 interface FooterItem {
+  id: number;
   text: string;
   hyperlink: string | undefined;
 }
@@ -15,6 +16,7 @@ export default function Footer() {
     title: "About",
     footerItem: [
       {
+        id: 0,
         text: "Learn More",
         hyperlink: "/about",
       },
@@ -25,10 +27,12 @@ export default function Footer() {
     title: "Contact",
     footerItem: [
       {
+        id: 1,
         text: "Support",
         hyperlink: "/support",
       },
       {
+        id: 2,
         text: "Feedback",
         hyperlink: "/feedback",
       },
@@ -50,14 +54,14 @@ export default function Footer() {
 function FooterListItem({ items }: { items: FooterList }) {
   return (
     <article>
-      <ul className="list-none">
+      <ul className="list-none" >
         <h3 className="font-bold">{items.title}</h3>
         {items.footerItem.map((item) => (
           <Link
             to={item.hyperlink}
             className="no-underline hover:underline hover:text-gray-400"
           >
-            <li className="footerItem">
+            <li className="footerItem" key={item.id}>
               {item.text}
             </li>
           </Link>
