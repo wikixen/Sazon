@@ -1,8 +1,6 @@
 export interface User {
   id: number;
-  avatar?: string;
   email: string;
-  username: string;
   recipes?: Recipe[];
   pantry?: string[];
 }

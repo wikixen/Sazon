@@ -54,7 +54,7 @@ export default function Footer() {
 function FooterListItem({ items }: { items: FooterList }) {
   return (
     <article>
-      <ul className="list-none" >
+      <ul className="list-none">
         <h3 className="font-bold">{items.title}</h3>
         {items.footerItem.map((item) => (
           <Link

@@ -25,14 +25,12 @@ ingredients, adding nutrition facts, calorie tracking, etc.)
 - [x] Finish Router implementation
 - [x] Switch from CSS to Tailwind
 - [x] Refactor CSS
-- [ ] Refactor pages with RadixUI.
+- [x] Refactor pages with RadixUI.
   - [x] Turn Login, Sign Up, & <s>Pantry?</s> into dialogs
-  - [ ] Edit Dialog on Recipe Edit
-  - [ ] Settings Tabs in /settings
 - [ ] Finish [Tanstack Form implementation](https://tanstack.com/form/latest)
 - [ ] Add tanstack [Query](https://tanstack.com/query/latest)
 - [ ] Add tanstack [virtualizer](https://tanstack.com/virtual/latest)
-- [ ] Look into [Tanstack Store](https://tanstack.com/store/latest)
+- [X] Look into [Tanstack Store](https://tanstack.com/store/latest)
 - [ ] Once over look and feel of app
 
 ###### Backend
