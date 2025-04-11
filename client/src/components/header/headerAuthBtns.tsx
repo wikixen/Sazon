@@ -1,5 +1,5 @@
-import { IconType, IconContext } from "react-icons";
-import { BiHomeAlt2, BiFridge, BiPlusCircle, BiCog } from "react-icons/bi";
+import { IconContext, IconType } from "react-icons";
+import { BiCog, BiFridge, BiHomeAlt2, BiPlusCircle } from "react-icons/bi";
 import { SettingsDropdown } from "./headerDropdown";
 import IconBtn from "../IconBtn";
 
@@ -18,7 +18,11 @@ export const HeaderAuthBtns = () => {
   const headerBtns: IconBtnItem[] = [
     { icon: BiHomeAlt2, btnDesc: "Home", hyperlink: "/home" },
     { icon: BiFridge, btnDesc: "Check your pantry", hyperlink: "/pantry" },
-    { icon: BiPlusCircle, btnDesc: "Create a recipe", hyperlink: "/recipe/new" },
+    {
+      icon: BiPlusCircle,
+      btnDesc: "Create a recipe",
+      hyperlink: "/recipe/new",
+    },
   ];
 
   return (
@@ -37,4 +41,4 @@ export const HeaderAuthBtns = () => {
       </div>
     </>
   );
-}
+};

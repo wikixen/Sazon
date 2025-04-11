@@ -1,5 +1,5 @@
-import { IconContext } from "react-icons"
-import { BiX } from "react-icons/bi"
+import { IconContext } from "react-icons";
+import { BiX } from "react-icons/bi";
 
 export const CloseDialogBtn = () => {
   return (
@@ -11,5 +11,5 @@ export const CloseDialogBtn = () => {
         <BiX />
       </IconContext.Provider>
     </button>
-  )
-}
+  );
+};

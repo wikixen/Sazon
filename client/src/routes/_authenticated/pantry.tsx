@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Dialog } from "radix-ui";
 import { IconContext } from "react-icons";
-import { BiTrash, BiX } from "react-icons/bi";
+import { BiPlus, BiTrash, BiX } from "react-icons/bi";
 import { CloseDialogBtn } from "../../components/buttons/closeDialogBtn";
 import { useAppForm } from "../../components/forms";
 import { sampleUserData } from "../../data/sampleUserData";
@@ -51,7 +51,9 @@ const AddPantryDialog = () => {
             <label htmlFor="CreateIngredient">
               Add an Ingredient to your pantry
             </label>
-            <CloseDialogBtn />
+            <button className="text-white mx-1 bg-[#ec221f] rounded-sm p-1 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]">
+              <BiPlus />
+            </button>
           </section>
         </Dialog.Trigger>
 

@@ -21,7 +21,7 @@ export const TextField = ({ label, hidden, styles, type }: TextFieldProps) => {
         {label}
       </label>
       <input
-        className={`${styles} outline-none border-1 rounded-md`}
+        className={`${styles} border-1 rounded-md focus:outline-red-500 focus:outline-1`}
         id={field.name}
         type={type}
         value={field.state.value}

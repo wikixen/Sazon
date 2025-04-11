@@ -14,7 +14,9 @@ interface DropdownItem {
 }
 
 // SettingsDropdown is the dropdown menu for the Settings Dropdown in AuthHeaderBtns
-export const SettingsDropdown = ({ BtnContent, dropdownItems }: SettingsDropdownType) => {
+export const SettingsDropdown = (
+  { BtnContent, dropdownItems }: SettingsDropdownType,
+) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -41,4 +43,4 @@ export const SettingsDropdown = ({ BtnContent, dropdownItems }: SettingsDropdown
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
   );
-}
+};

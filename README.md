@@ -27,10 +27,10 @@ ingredients, adding nutrition facts, calorie tracking, etc.)
 - [x] Refactor CSS
 - [x] Refactor pages with RadixUI.
   - [x] Turn Login, Sign Up, & <s>Pantry?</s> into dialogs
-- [ ] Finish [Tanstack Form implementation](https://tanstack.com/form/latest)
+- [X] Finish [Tanstack Form implementation](https://tanstack.com/form/latest)
 - [ ] Add tanstack [Query](https://tanstack.com/query/latest)
 - [ ] Add tanstack [virtualizer](https://tanstack.com/virtual/latest)
-- [X] Look into [Tanstack Store](https://tanstack.com/store/latest)
+- [x] Look into [Tanstack Store](https://tanstack.com/store/latest)
 - [ ] Once over look and feel of app
 
 ###### Backend

@@ -4,23 +4,25 @@ import { FieldErrors } from "./fieldErrors";
 interface TextFieldProps {
   label: string;
   hidden: boolean;
+  styles: string;
 }
 
-export const AreaField = ({ label, hidden }: TextFieldProps) => {
+// AreaField allows for reusable TextArea forms with Tanstack form
+export const AreaField = ({ label, hidden, styles }: TextFieldProps) => {
   const field = useFieldContext<string>();
 
   return (
-    <article>
+    <article className="flex flex-col gap-2">
       <label
         hidden={hidden}
         htmlFor={field.name}
-        className="text-xl text-center"
+        className="text-xl"
       >
         {label}
       </label>
       <textarea
         id="body"
-        className="w-120 h-80 p-4 outline-none border-1 rounded-md resize-none"
+        className={`${styles} w-120 h-80 p-4 border-1 rounded-md resize-none focus:outline-red-500 focus:outline-1`}
         name="body"
         value={field.state.value}
         onChange={(e) => field.handleChange(e.target.value)}
