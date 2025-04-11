@@ -1,56 +1,80 @@
-import { useNavigate } from "@tanstack/react-router";
-import { createContext, useContext, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 
-interface Children {
-  children: React.ReactNode;
-}
+import { api } from "../services/api/api";
 
-const AuthContext = createContext<any>(undefined);
-
-const AuthProvider = ({ children }: Children) => {
-  const [user, setUser] = useState<string | null>(null);
-  const [token, setToken] = useState(localStorage.getItem("site") || "");
-  const navigate = useNavigate();
-  const loginAction = async (data: any) => {
-    try {
-      const response = await fetch("ADD API HERE", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const res = await response.json();
-
-      if (res.data) {
-        setUser(res.data.user);
-        setToken(res.token);
-        localStorage.setItem("site", res.token);
-        navigate({ to: "/home" });
-        return;
-      }
-      throw new Error(res.message);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const logOut = () => {
-    setUser(null);
-    setToken("");
-    localStorage.removeItem("site");
-    navigate({ to: "/" });
-  };
-
-  return (
-    <AuthContext.Provider value={{ token, user, loginAction, logOut }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-export default AuthProvider;
+const AuthContext = createContext(undefined);
 
 export const useAuth = () => {
-  return useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+
+  if (!authContext) {
+    throw new Error("useAuth must be used within a AuthProvider");
+  }
+
+  return authContext;
+};
+
+const AuthProvider = ({ children }: any) => {
+  const [token, setToken] = useState<string | null>();
+
+  useEffect(() => {
+    const fetchMe = async () => {
+      try {
+        const response = await api.get("JWT API HERE");
+      } catch {
+        setToken(null);
+      }
+    };
+
+    fetchMe();
+  }, []);
+
+  useLayoutEffect(() => {
+    const authInterceptor = api.interceptors.request.use((config) => {
+      config.headers.Authorization = token
+        ? `Bearer ${token}`
+        : config.headers.Authorization;
+      return config
+    });
+
+    return () => {
+      api.interceptors.request.eject(authInterceptor);
+    };
+  }, [token]);
+
+  useLayoutEffect(() => {
+    const refreshInterceptor = api.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        const originalRequest = error.config;
+
+        if (error.response.status === 401 && error.response.data.message === "Unauthorized") {
+          try {
+            const response = await api.get('api/refreshToken');
+
+            setToken(response.data.accessToken)
+
+            originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`
+            originalRequest._retry = true;
+
+            return api(originalRequest)
+          } catch {
+            setToken(null)
+          }
+
+          return Promise.reject(error)
+        }
+        
+        return () => {
+          api.interceptors.response.eject(refreshInterceptor);
+        }
+      }
+    )
+  })
 };

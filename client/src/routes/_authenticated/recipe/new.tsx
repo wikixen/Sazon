@@ -42,7 +42,11 @@ function RouteComponent() {
         <form.AppField
           name="desc"
           children={(field) => (
-            <field.AreaField styles="w-full" label="Description" hidden={false} />
+            <field.AreaField
+              styles="w-full"
+              label="Description"
+              hidden={false}
+            />
           )}
         />
         <form.AppField

@@ -1,19 +1,24 @@
-import { createRootRoute, Outlet } from "@tanstack/react-router";
-import { useState } from "react";
-import Header from "../components/header/header";
+import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import Footer from "../components/footer/footer";
+import Header from "../components/header/header";
+import { Auth, AuthContextType } from "../hooks/authProvider";
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootComponent,
 });
 
+type RouterContext = {
+  auth: AuthContextType;
+};
+
 function RootComponent() {
-  const [auth, setAuth] = useState(true);
   return (
     <>
-      <Header authStatus={auth} />
-      <Outlet />
-      <Footer />
+      <Auth>
+        <Header />
+        <Outlet />
+        <Footer />
+      </Auth>
     </>
   );
 }

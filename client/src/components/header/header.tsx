@@ -4,9 +4,11 @@ import sazonLogoWhite from "../../assets/LogoWhiteBg.png";
 import { HeaderAuthBtns } from "./headerAuthBtns";
 import { HeaderGuestBtns } from "./headerGuestBtns";
 import { SearchBar } from "./searchBar";
+import { useAuth } from "../../hooks/authProvider";
 
-export default function Header({ authStatus }: { authStatus: boolean }) {
-  if (authStatus) {
+export default function Header() {
+  const authStatus = useAuth();
+  if (authStatus.token && authStatus.user) {
     return (
       <header className="grid grid-cols-[auto_auto_auto] items-center justify-between mt-2 mx-4">
         <Link to="/home">

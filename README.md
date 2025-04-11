@@ -20,8 +20,6 @@ ingredients, adding nutrition facts, calorie tracking, etc.)
 
 ###### Frontend
 
-- [ ] Add
-      [auth](https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5)
 - [x] Finish Router implementation
 - [x] Switch from CSS to Tailwind
 - [x] Refactor CSS
@@ -30,6 +28,7 @@ ingredients, adding nutrition facts, calorie tracking, etc.)
 - [X] Finish [Tanstack Form implementation](https://tanstack.com/form/latest)
 - [x] Look into [Tanstack Store](https://tanstack.com/store/latest)
 - [X] Add tanstack [virtualizer](https://tanstack.com/virtual/latest)
+- [ ] Add auth
 - [ ] Add tanstack [Query](https://tanstack.com/query/latest)
 - [ ] Once over look and feel of app
 

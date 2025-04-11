@@ -1,9 +1,11 @@
 import { Dialog, Tabs } from "radix-ui";
 import { CloseDialogBtn } from "../buttons/closeDialogBtn";
 import { useAppForm } from "../forms";
+import { useAuth } from "../../hooks/authProvider";
 
 // HeaderGuestBtns are the buttons displayed on the landing page for guests
 export const HeaderGuestBtns = () => {
+  const auth = useAuth();
   const tabs = ["Login", "Sign Up"];
 
   const form = useAppForm({
@@ -12,7 +14,18 @@ export const HeaderGuestBtns = () => {
       password: "",
     },
     onSubmit: ({ value }) => {
-      console.log(value);
+      // console.log(value);
+      auth.loginAction(value);
+    },
+    validators: {
+      onSubmit: ({ value }) => {
+        if (value.email === "" || value.password === "") {
+          return "Forms can't be empty";
+        }
+        if (!value.email.includes("@")) return "Enter a valid email address";
+        if (value.email.indexOf(" ") >= 0) return "Enter a valid email";
+        if (value.password.indexOf(" ") >= 0) return "Enter a valid password";
+      },
     },
   });
 
@@ -30,9 +43,7 @@ export const HeaderGuestBtns = () => {
           className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-8 shadow rounded-md bg-white"
           aria-describedby="Login or Sign Up"
         >
-          <Dialog.Close asChild>
-            <CloseDialogBtn />
-          </Dialog.Close>
+          <CloseDialogBtn />
           <Tabs.Root
             className="flex w-[300px] flex-col"
             defaultValue="tab1"

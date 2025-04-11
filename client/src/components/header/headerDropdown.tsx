@@ -1,22 +1,10 @@
+import { useAuth } from "../../hooks/authProvider";
 import { Link } from "@tanstack/react-router";
 import { DropdownMenu } from "radix-ui";
-import { IconType } from "react-icons";
+import { BiCog } from "react-icons/bi";
 
-interface SettingsDropdownType {
-  BtnContent: IconType | string;
-  dropdownItems: DropdownItem[];
-}
-
-interface DropdownItem {
-  name: string;
-  hyperlink?: string;
-  onClick?: () => void;
-}
-
-// SettingsDropdown is the dropdown menu for the Settings Dropdown in AuthHeaderBtns
-export const SettingsDropdown = (
-  { BtnContent, dropdownItems }: SettingsDropdownType,
-) => {
+export const SettingsDropdown = () => {
+  const auth = useAuth();
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -24,7 +12,7 @@ export const SettingsDropdown = (
           className="text-white mx-1 bg-[#ec221f] rounded-sm px-6 py-3 text-lg cursor-pointer transition-colors hover:bg-[#c00f0c]"
           aria-label="Settings"
         >
-          {typeof BtnContent === "string" ? BtnContent : <BtnContent />}
+          <BiCog />
         </button>
       </DropdownMenu.Trigger>
 
@@ -32,13 +20,17 @@ export const SettingsDropdown = (
         <DropdownMenu.Content className="min-w-[100px] me-2 rounded-lg bg-white p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] 
           will-change-[opacity,transform] data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade 
           data-[side=right]:animate-slideLeftAndFade data-[side=top]:animate-slideDownAndFade">
-          {dropdownItems.map((item) => (
-            <DropdownMenu.Item className="cursor-pointer hover:bg-gray-200 p-2 transition-colors rounded-md">
-              <Link to={item.hyperlink}>
-                {item.name}
-              </Link>
-            </DropdownMenu.Item>
-          ))}
+          <DropdownMenu.Item className="cursor-pointer hover:bg-gray-200 p-2 transition-colors rounded-md">
+            <Link to="/settings">
+              Settings
+            </Link>
+          </DropdownMenu.Item>
+          <DropdownMenu.Item
+            onClick={() => auth.logOut()}
+            className="cursor-pointer hover:bg-gray-200 p-2 transition-colors rounded-md"
+          >
+            Log Out
+          </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>

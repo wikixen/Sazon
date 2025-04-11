@@ -38,7 +38,9 @@ export const ContactForm = ({ title }: ContactFormProps) => {
       />
       <form.AppField
         name="body"
-        children={(field) => <field.AreaField styles="w-120" label="Body" hidden={true} />}
+        children={(field) => (
+          <field.AreaField styles="w-120" label="Body" hidden={true} />
+        )}
       />
       <form.AppForm>
         <form.SubmitBtn styles="">Submit</form.SubmitBtn>

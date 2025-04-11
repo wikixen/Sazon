@@ -4,8 +4,9 @@ import { sampleRecipeData } from "../../data/sampleRecipeData";
 import { sampleUserData } from "../../data/sampleUserData";
 
 export const Route = createFileRoute("/_authenticated/home")({
-  beforeLoad: () => {
-    if (!isAuthenticated()) {
+  beforeLoad: ({ context }) => {
+    const { user, token } = context.auth;
+    if (!user && !token) {
       throw redirect({
         to: "/",
       });
@@ -13,10 +14,6 @@ export const Route = createFileRoute("/_authenticated/home")({
   },
   component: RouteComponent,
 });
-// Replace with actual auth
-function isAuthenticated() {
-  return true;
-}
 
 function RouteComponent() {
   const recipeList = sampleRecipeData;
