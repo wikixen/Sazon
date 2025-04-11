@@ -40,7 +40,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="grid grid-cols-[auto_1fr_auto] items-end border-t-1 mx-4 h-auto">
+    <footer className="grid grid-cols-[auto_1fr_auto] items-end border-t-1 mx-4 h-[5rem]">
       <section className="flex gap-4">
         <FooterListItem items={aboutItems} />
         <FooterListItem items={contactItems} />

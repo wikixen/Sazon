@@ -28,9 +28,9 @@ ingredients, adding nutrition facts, calorie tracking, etc.)
 - [x] Refactor pages with RadixUI.
   - [x] Turn Login, Sign Up, & <s>Pantry?</s> into dialogs
 - [X] Finish [Tanstack Form implementation](https://tanstack.com/form/latest)
-- [ ] Add tanstack [Query](https://tanstack.com/query/latest)
-- [ ] Add tanstack [virtualizer](https://tanstack.com/virtual/latest)
 - [x] Look into [Tanstack Store](https://tanstack.com/store/latest)
+- [X] Add tanstack [virtualizer](https://tanstack.com/virtual/latest)
+- [ ] Add tanstack [Query](https://tanstack.com/query/latest)
 - [ ] Once over look and feel of app
 
 ###### Backend
@@ -43,3 +43,7 @@ ingredients, adding nutrition facts, calorie tracking, etc.)
   - [ ] User will be main model
   - [ ] Ingredients will just be a name with a boolean
 - [ ] Once over routes
+
+
+##### Future
+- If lag becomes a problem add Tanstack Virtualizer

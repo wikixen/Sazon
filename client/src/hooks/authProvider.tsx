@@ -2,7 +2,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { createContext, useContext, useState } from "react";
 
 interface Children {
-  children: JSX.Element;
+  children: React.ReactNode;
 }
 
 const AuthContext = createContext<any>(undefined);
