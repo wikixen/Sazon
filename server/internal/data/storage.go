@@ -16,22 +16,25 @@ var (
 
 // Storage is struct of interfaces to allow for any future swapping of databases
 type Storage struct {
-	Users interface {
-		Create(context.Context, *User) error
-	}
 	Recipes interface {
+		GetByID(context.Context, int64) (*Recipe, error)
 		Create(context.Context, *Recipe) error
+		Update(context.Context, *Recipe) error
+		Delete(context.Context, int64) error
+		GetUserRecipes(context.Context, int64) error //PaginatedFeedQuery is a param; PostWithMetadata is a return var
 	}
-	Ingredients interface {
-		Create(context.Context, *Ingredient) error
+	Users interface {
+		GetByID(context.Context, int64) (*User, error)
+		GetByEmail(context.Context, string) (*User, error)
+		Create(context.Context, *User) error
+		Delete(context.Context, int64) error
 	}
 }
 
 // NewPostgresStorage creates a postgres implementation of Storage struct
-func NewPostgresStorage(db *sql.DB) Storage {
+func NewStorage(db *sql.DB) Storage {
 	return Storage{
-		Users:       &UserStore{db},
-		Recipes:     &RecipeStore{db},
-		Ingredients: &IngStore{db},
+		Recipes: &RecipeStore{db},
+		Users:   &UserStore{db},
 	}
 }

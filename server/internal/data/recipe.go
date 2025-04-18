@@ -1,4 +1,5 @@
 package data
+
 // recipe.go holds all functions related to the recipes table
 
 import (
@@ -12,16 +13,20 @@ type Recipe struct {
 	ID          int64    `json:"id"`
 	Name        string   `json:"title"`
 	Content     string   `json:"content"`
-	Ingredients []string `json:"ingredients"` // Ingredients are tied to the User by Fridge column in users
+	Ingredients []string `json:"ingredients"`
 	UserID      int64    `json:"user_id"` // UserID is tied to the User by ID column in users
 	Tags        []string `json:"tags"`
 	CreatedAt   string   `json:"created_at"`
 	UpdatedAt   string   `json:"updated_at"`
+	Version     int      `json:"version"`
 }
 
 type RecipeStore struct {
 	db *sql.DB
 }
+
+// func (s *RecipeStore) GetUserRecipes(ctx context.Context, userID int64, fq PaginatedFeedQuery) {
+// }
 
 // Creates a recipes table in database
 func (s *RecipeStore) Create(ctx context.Context, recipe *Recipe) error {
@@ -51,13 +56,11 @@ func (s *RecipeStore) Create(ctx context.Context, recipe *Recipe) error {
 	return nil
 }
 
-
 // func (s *LiteStore) Delete(ctx context.Context, recipe *Recipe) error {
 // 	query := `DELETE FROM recipes WHERE id = $1`
 
 // 	// ctx, cancel := context.WithTimeout(ctx, QueryTimeoutDuration)
 // 	defer cancel()
 
-	
 // 	return nil
 // }
