@@ -21,7 +21,7 @@ type Storage struct {
 		Create(context.Context, *Recipe) error
 		Update(context.Context, *Recipe) error
 		Delete(context.Context, int64) error
-		GetUserRecipes(context.Context, int64) error //PaginatedFeedQuery is a param; PostWithMetadata is a return var
+		GetUserRecipes(context.Context, int64, PaginatedFeedQuery) ([]Recipe, error) //PaginatedFeedQuery is a param; PostWithMetadata is a return var
 	}
 	Users interface {
 		GetByID(context.Context, int64) (*User, error)

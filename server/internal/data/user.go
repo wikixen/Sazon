@@ -51,7 +51,7 @@ type UserStore struct {
 func (s *UserStore) Create(ctx context.Context, user *User) error {
 	query := `
 	INSERT INTO users (email, password)
-	VALUES ($1,$2) RETURNING id, created_at, updated_at
+	VALUES ($1,$2) RETURNING id, created_at
 	`
 
 	err := s.db.QueryRowContext(
@@ -108,24 +108,34 @@ func (s *UserStore) GetByID(ctx context.Context, userID int64) (*User, error) {
 	return user, nil
 }
 
-func (s *UserStore) Delete(ctx context.Context, id int64) error {
+func (s *UserStore) Delete(ctx context.Context, userID int64) error {
 	query := `DELETE FROM users WHERE id = $1`
 
 	ctx, cancel := context.WithTimeout(ctx, QueryTimeoutDuration)
 	defer cancel()
 
-	_, err := s.db.ExecContext(
+	res, err := s.db.ExecContext(
 		ctx,
 		query,
-		id,
+		userID,
 	)
 	if err != nil {
 		return err
 	}
 
+	rows, err := res.RowsAffected()
+	if err != nil {
+		return err
+	}
+
+	if rows == 0 {
+		return ErrNotFound
+	}
+
 	return nil
 }
 
+// Still need to implement this
 func (s *UserStore) GetByEmail(ctx context.Context, email string) (*User, error) {
 	user := &User{}
 	return user, nil

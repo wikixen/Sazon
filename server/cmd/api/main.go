@@ -31,7 +31,7 @@ func main() {
 	defer db.Close()
 	log.Println("DB connection established")
 
-	store := data.NewPostgresStorage(db)
+	store := data.NewStorage(db)
 
 	app := &app{
 		config: cfg,
